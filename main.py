@@ -12,7 +12,7 @@ def main():
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Lookup a bible passage on the command line")
     parser.add_argument("-l", "--list",  action='store_true', help = "List all the books of the bible")
-    parser.add_argument("-r", "--read", nargs = '*', metavar = "read", type = str, help = "Read a passage")
+    parser.add_argument("-r", "--read", nargs = '*', metavar = "read", type = str, help = "<Book> <Chapter>:<Verse>-<Verse>")
     parser.set_defaults(feature=False)
     args = parser.parse_args()
     main()
