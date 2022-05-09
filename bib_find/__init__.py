@@ -1,0 +1,1 @@
+from bib_find.objects import bibfind
