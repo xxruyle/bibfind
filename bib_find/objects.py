@@ -8,6 +8,7 @@ class bibfind():
             self.bible = json.load(f)
 
         self.list_books = list(self.bible)
+        self.line_proximity = 5
 
     def parse_citation(self, passage):
         init = passage.split(' ', 1)
@@ -51,3 +52,23 @@ class bibfind():
 
         else:
             print("String not proper citation format")
+
+
+    # Returns verses (and the verses proximate to them) which contain the keyword argument
+    def search_key(self, book, keyword):
+        bible_book = self.smart_lookup(book)
+        for chapter in self.bible[bible_book]:
+            for verse in self.bible[bible_book][chapter]: # Loops through each verse in a bible book chapter 
+                if keyword in self.bible[bible_book][chapter][verse]: 
+                    
+                    # Formatting 
+                    int_verse = int(verse)
+                    print(f"Chapter {chapter}")
+                    if str(int_verse - 1) in self.bible[bible_book][chapter] and str(int_verse + 1) in self.bible[bible_book][chapter]:
+                        print(f"{str(int_verse - 1)} {self.bible[bible_book][chapter][str(int_verse - 1)]}")
+                        print(f"{verse} {self.bible[bible_book][chapter][verse]}")
+                        print(f"{str(int_verse + 1)} {self.bible[bible_book][chapter][str(int_verse + 1)]}\n")
+                    else:
+                        print(f"{verse} {self.bible[bible_book][chapter][verse]}\n")
+
+
