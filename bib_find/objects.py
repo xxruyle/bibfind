@@ -6,8 +6,9 @@ class bibfind():
     def __init__(self):
         with open(r"bib_find\EntireBible-CPDV.json", 'r', encoding="UTF-8") as f:
             self.bible = json.load(f)
+            
 
-        self.list_books = list(self.bible)
+        self.list_books = list(self.bible)[1:]
         self.line_proximity = 5
 
     def parse_citation(self, passage):
@@ -54,21 +55,34 @@ class bibfind():
             print("String not proper citation format")
 
 
+    def format_verses(self, bib_book, chapter, verse):
+        # Formatting 
+        int_verse = int(verse)
+        if str(int_verse - 1) in self.bible[bib_book][chapter] and str(int_verse + 1) in self.bible[bib_book][chapter]:
+            print(f"{bib_book} {chapter}:{str(int_verse - 1)}-{str(int_verse + 1)}")
+            print(f"{str(int_verse - 1)} {self.bible[bib_book][chapter][str(int_verse - 1)]}")
+            print(f"{verse} {self.bible[bib_book][chapter][verse]}")
+            print(f"{str(int_verse + 1)} {self.bible[bib_book][chapter][str(int_verse + 1)]}\n")
+        else:
+            print(f"{bib_book} {chapter}:{verse}")
+            print(f"{verse} {self.bible[bib_book][chapter][verse]}\n")
+
+
     # Returns verses (and the verses proximate to them) which contain the keyword argument
     def search_key(self, book, keyword):
         bible_book = self.smart_lookup(book)
-        for chapter in self.bible[bible_book]:
-            for verse in self.bible[bible_book][chapter]: # Loops through each verse in a bible book chapter 
-                if keyword in self.bible[bible_book][chapter][verse]: 
-                    
-                    # Formatting 
-                    int_verse = int(verse)
-                    print(f"Chapter {chapter}")
-                    if str(int_verse - 1) in self.bible[bible_book][chapter] and str(int_verse + 1) in self.bible[bible_book][chapter]:
-                        print(f"{str(int_verse - 1)} {self.bible[bible_book][chapter][str(int_verse - 1)]}")
-                        print(f"{verse} {self.bible[bible_book][chapter][verse]}")
-                        print(f"{str(int_verse + 1)} {self.bible[bible_book][chapter][str(int_verse + 1)]}\n")
-                    else:
-                        print(f"{verse} {self.bible[bible_book][chapter][verse]}\n")
+        if book == "ALL":
+            for b in self.list_books:
+                for chapter in self.bible[b]:
+                    for verse in self.bible[b][chapter]:
+                        if keyword.upper() in self.bible[b][chapter][verse].upper():
+                            # Formatting 
+                            self.format_verses(b, chapter, verse)
+                            
+        else:                    
+            for chapter in self.bible[bible_book]:  # Loops through each chapter in a bible book 
+                for verse in self.bible[bible_book][chapter]: # Loops through each verse in a bible book chapter 
+                    if keyword.upper() in self.bible[bible_book][chapter][verse].upper(): 
+                        self.format_verses(bible_book, chapter, verse)
 
 
