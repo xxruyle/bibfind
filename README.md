@@ -15,3 +15,10 @@ optional arguments:
   -r [read [read ...]], --read [read [read ...]]
                         <Book> <Chapter>:<Verse>-<Verse>
 ```
+
+# Changing the translation
+- You can choose a translation from the bibles folder and pass it in when intializing the class
+  - Example in main.py: 
+```
+b1 = bib_find.bibfind(r"bib_find\bibles\EntireBible-DR.json")
+ ```
