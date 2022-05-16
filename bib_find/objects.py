@@ -31,7 +31,7 @@ class bibfind():
         parsed = self.parse_citation(passage)
         
         bible_book = self.smart_lookup(parsed[0])
-        chapter = f"\n{bible_book}, Chapter {parsed[1]}\n"
+        chapter = f"\n{bible_book} {parsed[1]}\n"
         # EX Genesis 
         if len(parsed) == 1:
             for key in self.bible[bible_book]:
@@ -42,7 +42,7 @@ class bibfind():
         elif len(parsed) == 2: 
             print(chapter)
             for key in self.bible[bible_book][parsed[1]]:
-                print(f"{key} {self.bible[bible_book][parsed[1]][key]}\n") 
+                print(f"{key} {self.bible[bible_book][parsed[1]][key]}") 
 
         # Genesis 1:1
         elif len(parsed) == 3:  
