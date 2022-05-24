@@ -2,7 +2,7 @@ import bib_find
 import argparse
 
 def main():
-    b1 = bib_find.bibfind(r"bib_find\bibles\EntireBible-DR.json")
+    b1 = bib_find.bibfind("bibles/EntireBible-DR.json")
     if args.list:
         print(b1.list_books)
     elif args.translations:

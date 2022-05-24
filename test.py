@@ -1,5 +1,17 @@
-import json
-with open("bib_find/bibles/EntireBible-DR.json", 'r', encoding="UTF-8") as f:
-    bible = json.load(f)
+import re 
 
-print(bible["Luke"]["1"])
+def parse_citation(passage):
+    if passage[0].isdigit():
+        init = passage.split(' ', 2)
+        parsed = re.split('[:-]+', init[2])
+        book = passage[0] + ' '+ init[1]
+        parsed.insert(0, book)
+    else:
+        init = passage.split(' ', 1)
+        parsed = re.split('[:-]+', init[1])
+        print(init)
+        parsed.insert(0, init[0])
+        
+    return parsed 
+
+print(parse_citation("1 John 1"))

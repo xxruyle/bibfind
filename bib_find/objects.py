@@ -10,13 +10,29 @@ class bibfind():
 
         self.list_books = list(self.bible)
         self.line_proximity = 3  # will print so many lines before and after found keyword 
-        self.list_translations = '\n'.join(listdir(r"bib_find\bibles"))
+        self.list_translations = '\n'.join(listdir("bibles"))
 
     # Parses the user input 
+    #def parse_citation(self, passage):
+    #    init = passage.split(' ', 1)
+    #    parsed = re.split('[:-]+', init[1])
+    #    parsed.insert(0, init[0])
+    #    return parsed 
+
     def parse_citation(self, passage):
-        init = passage.split(' ', 1)
-        parsed = re.split('[:-]+', init[1])
-        parsed.insert(0, init[0])
+        #EX: 1 John 1:2 
+        if passage[0].isdigit():
+            init = passage.split(' ', 2)
+            parsed = re.split('[:-]+', init[2])
+            book = passage[0] + ' '+ init[1]
+            parsed.insert(0, book)
+        #EX: John 1:2 
+        else:
+            init = passage.split(' ', 1)
+            parsed = re.split('[:-]+', init[1])
+            print(init)
+            parsed.insert(0, init[0])
+
         return parsed 
 
     #If a book is passed in incorrectly it will match to the most similar book (i.e "Gen" = "Genesis")
@@ -53,7 +69,7 @@ class bibfind():
             print(chapter)
             for key in self.bible[bible_book][parsed[1]]:
                 if int(key) >= int(parsed[2]) and int(key) <= int(parsed[3]):
-                    print(f"{key} {self.bible[bible_book][parsed[1]][key]}\n")
+                    print(f"{key} {self.bible[bible_book][parsed[1]][key]}")
 
         else:
             print("String not proper citation format")
