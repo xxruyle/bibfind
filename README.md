@@ -4,17 +4,20 @@
 
 # Usage 
 ```
-usage: main.py [-h] [-l] [-s [book/all, keyword [book/all, keyword ...]]] [-r [read [read ...]]]
+usage: main.py [-h] [-t] [-l] [-s [book/all, keyword [book/all, keyword ...]]] [-f [find [find ...]]] [-r random]
 
 Lookup a bible passage on the command line
 
 optional arguments:
   -h, --help            show this help message and exit
+  -t, --translations    List all the availible translations of the bible
   -l, --list            List all the books of the bible
   -s [book/all, keyword [book/all, keyword ...]], --search [book/all, keyword [book/all, keyword ...]]
                         Returns verses (and the verses proximate to them) which contain the keyword argument
-  -r [read [read ...]], --read [read [read ...]]
+  -f [find [find ...]], --find [find [find ...]]
                         <Book> <Chapter>:<Verse>-<Verse>
+  -r random, --random random
+                        Look up a random passage from the bible. EX: -r ALL, -r Matthew
 ```
 
 # Examples of Usage
