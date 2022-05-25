@@ -38,6 +38,19 @@ Acts 15:32-36
 Found 161 instance(s) of 'Judas'
 ```
 
+```
+python main.py -s "3 John" Church 
+
+3 John 1:8-12
+...
+10 Wherefore, if I come, I will admonish his works which he doth, prating against us with malicious words: and as if these things were not enough for him, neither doth he himself receive the brethren: and those that do receive them he forbiddeth, and casteth out of the church.
+11 Dearly beloved, follow not that which is evil, but that which is good. He that doth good, is of God: he that doth evil, hath not seen God.
+...
+
+
+Found 3 instance(s) of 'Church' in 3 John
+```
+
 # Changing the translation
 - You can choose a translation from the bibles folder and pass it in when intializing the class
   - Example in main.py: 
