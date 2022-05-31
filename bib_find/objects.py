@@ -72,28 +72,27 @@ class bibfind():
         
         '''
         parsed = self.parse_citation(passage)
-        display_input = ' '.join(parsed)
         bible_book = self.smart_lookup(parsed[0])
         # EX Genesis 
         if len(parsed) == 1:
             for key in self.bible[bible_book]:
-                print(display_input)
+                print(f"{parsed[0]} {parsed[1]}:{parsed[2]}")
                 for j in self.bible[bible_book][key]:
                     print(f"{j} {self.bible[bible_book][key][j]}\n")
         # Genesis 1
         elif len(parsed) == 2: 
-            print(display_input)
+            print(f"{parsed[0]} {parsed[1]}")
             for key in self.bible[bible_book][parsed[1]]:
                 print(f"{key} {self.bible[bible_book][parsed[1]][key]}") 
 
         # Genesis 1:1
         elif len(parsed) == 3:  
-            print(display_input)
+            print(f"{parsed[0]} {parsed[1]}:{parsed[2]}")
             print(f"{parsed[2]} {self.bible[bible_book][parsed[1]][parsed[2]]}\n")
 
         # Gensis 1:1-2
         elif len(parsed) == 4:
-            print(display_input)
+            print(f"{parsed[0]} {parsed[1]}:{parsed[2]}-{parsed[3]}")
             for key in self.bible[bible_book][parsed[1]]:
                 if int(key) >= int(parsed[2]) and int(key) <= int(parsed[3]):
                     print(f"{key} {self.bible[bible_book][parsed[1]][key]}")
@@ -105,10 +104,9 @@ class bibfind():
         '''
         used in search_key to print out the found verses pretty.
 
-        @param bib_book: the book 
-        @param chapter: the chapter
-        @param verse: the verse 
-
+        :param bib_book: the book 
+        :param chapter: the chapter
+        :param verse: the verse 
         '''
         int_verse = int(verse)
         if str(int_verse - self.line_proximity) in self.bible[bib_book][chapter] and str(int_verse + self.line_proximity) in self.bible[bib_book][chapter]:
@@ -160,6 +158,16 @@ class bibfind():
                         count += 1
             print(f"Found {count} instance(s) of '{keyword}' in {bible_book}") 
 
+
+    def random_format(self, randomBook):
+        '''
+        used in random_verse to print out verses pretty 
+        '''
+        randomChapter = random.choice(list(self.bible[randomBook]))
+        randomVerse = random.choice(list(self.bible[randomBook][randomChapter]))
+        print(f"{randomBook} {randomChapter}:{randomVerse}")
+        print(self.bible[randomBook][randomChapter][randomVerse])
+
     def random_verse(self, book):
         '''
         Returns a random verse in the bible or returns a random verse from a specific book 
@@ -180,27 +188,25 @@ class bibfind():
         Matthew 2:8
         And sending them into Bethlehem, said: Go, and search diligently after the child; and when you have found him, bring me word again, that I also may come and adore him.
         '''
-        if book.upper() == "OT" or "OLDTESTAMENT" or "OLD TESTAMENT":
+        if book.upper() == "OT" or book.upper() == "OLDTESTAMENT" or book.upper() == "OLD TESTAMENT":
             randomBook = random.choice(self.OldTestament)
-        elif book.upper() == "NT" or "NEWTESTAMENT" or "NEW TESTAMENT":
+            self.random_format(randomBook)
+        elif book.upper() == "NT" or book.upper() == "NEWTESTAMENT" or book.upper() == "NEW TESTAMENT":
             randomBook = random.choice(self.NewTestament)
-
+            self.random_format(randomBook)
         elif book.upper() == "ALL":
             randomBook = random.choice(self.list_books)
-        elif book:
+            self.random_format(randomBook)
+        else:
             randomBook = random.choice(self.list_books)
             bookChoice = self.smart_lookup(book)
             randomChapter = random.choice(list(self.bible[bookChoice]))
             randomVerse = random.choice(list(self.bible[bookChoice][randomChapter]))
             print(f"{bookChoice} {randomChapter}:{randomVerse}")
             print(self.bible[bookChoice][randomChapter][randomVerse])
-            return 0
+            
 
-        randomChapter = random.choice(list(self.bible[randomBook]))
-        randomVerse = random.choice(list(self.bible[randomBook][randomChapter]))
-        print(f"{randomBook} {randomChapter}:{randomVerse}")
-        print(self.bible[randomBook][randomChapter][randomVerse])
-        return 0
+
 
 
             
