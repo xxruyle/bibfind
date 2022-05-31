@@ -4,25 +4,26 @@
 
 # Usage 
 ```
-usage: main.py [-h] [-t] [-l] [-s [book/all, keyword [book/all, keyword ...]]] [-f [find [find ...]]] [-r random]
+usage: main.py [-h] [-t] [-l] [-s [<book/all> <keyword> ...]] [-f [verses ...]] [-r book]
 
 Lookup a bible passage on the command line
 
-optional arguments:
+options:
   -h, --help            show this help message and exit
   -t, --translations    List all the availible translations of the bible
   -l, --list            List all the books of the bible
-  -s [book/all, keyword [book/all, keyword ...]], --search [book/all, keyword [book/all, keyword ...]]
-                        Returns verses (and the verses proximate to them) which contain the keyword argument
-  -f [find [find ...]], --find [find [find ...]]
+  -s [<book/all> <keyword> ...], --search [<book/all> <keyword> ...]
+                        Returns verses (and the verses proximate to them) which contain the keyword
+                        argument. EX: -s ALL God, -s Matthew Jesus
+  -f [verse(s) ...], --find [verse(s) ...]
                         <Book> <Chapter>:<Verse>-<Verse>
-  -r random, --random random
-                        Look up a random passage from the bible. EX: -r ALL, -r Matthew
+  -r book, --random book
+                        Look up a random passage from the bible. EX: -r ALL, -r OT, -r NT, -r Matthew
 ```
 
 # Examples of Usage
 ```
-python main.py -r John 3:15
+python main.py -f John 3:15
 15 That whosoever believeth in him, may not perish, but may have life everlasting.
 ```
 
@@ -40,6 +41,12 @@ Acts 15:32-36
 
 Found 161 instance(s) of 'Judas'
 ```
+```python
+python main.py -s NewTestament Judas
+...
+Found 128 instance(s) of 'Judas' in the NT
+```
+
 
 ```
 python main.py -s "3 John" Church 
