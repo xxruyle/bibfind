@@ -68,3 +68,28 @@ Found 3 instance(s) of 'Church' in 3 John
 ``` python 
 b1 = bib_find.bibfind(r"bib_find\bibles\EntireBible-DR.json")
  ```
+
+ ## Adding your Own Translation 
+ - If you want to add a new translation, it must be a json file and have a certain type of format
+  
+Example of the format 
+``` json
+{
+ "Genesis": // Book Name
+  {
+   "1": // Chapter Number
+     {
+      "1": "In the *beginning God created heaven and earth.", // verse 
+      "2": "*And the earth was void and empty, and darkness was upon the face of the deep: and   the   Spirit of God moved over the waters.",
+      "3": "And God said: *Be light made. And light was made.",
+     }
+  }
+}
+
+```
+
+ # Line Proximity 
+ - You can change the amount of verses proximate to a found keyword in the bibfind init function.
+``` python 
+self.line_proximity = 3 # will print so many lines before and after found keyword 
+```
