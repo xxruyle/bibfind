@@ -89,7 +89,7 @@ Example of the format
 ```
 
  # Line Proximity 
- - You can change the amount of verses proximate to a found keyword in the bibfind init function.
+ - You can change the amount of verses printed proximate to a found keyword in the bibfind init function.
 ``` python 
 self.line_proximity = 3 # will print so many lines before and after found keyword 
 ```
