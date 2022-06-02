@@ -1,8 +1,13 @@
 import bib_find
 import argparse
+import os 
+
+# The absolute path which contains the bible translations
+dirname = os.path.dirname(__file__)
+bibleTranslation = os.path.join(f"{dirname}/bib_find", "bibles/EntireBible-DR.json")
 
 def main():
-    b1 = bib_find.bibfind("bibles/EntireBible-DR.json")
+    b1 = bib_find.bibfind(bibleTranslation)
     if args.list:
         print(b1.list_books)
     elif args.translations:
