@@ -22,12 +22,12 @@ options:
 ```
 
 # Examples of Usage
-``` JSON
+``` 
 python main.py -f John 3:15
 15 That whosoever believeth in him, may not perish, but may have life everlasting.
 ```
 
-``` JSON
+``` 
 python main.py -s ALL Judas
 
 ...
@@ -42,14 +42,14 @@ Acts 15:32-36
 Found 161 instance(s) of 'Judas'
 ```
 
-``` JSON
+``` 
 python main.py -s NewTestament Judas
 ...
 Found 128 instance(s) of 'Judas' in the NT
 ```
 
 
-``` JSON
+``` 
 python main.py -s "3 John" Church 
 
 3 John 1:8-12
