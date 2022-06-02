@@ -1,7 +1,12 @@
 import json 
 import re 
-from os import listdir
+import os
 import random
+
+# The absolute path which contains the bible translations
+dirname = os.path.dirname(__file__)
+biblefolder = os.path.join(dirname, "bibles")
+
 
 class bibfind():
     def __init__(self, translation):
@@ -11,7 +16,7 @@ class bibfind():
 
         self.list_books = list(self.bible)
         self.line_proximity = 3  # will print so many lines before and after found keyword 
-        self.list_translations = '\n'.join(listdir("bibles"))
+        self.list_translations = '\n'.join(os.listdir(biblefolder))
         self.OldTestament = []
         self.NewTestament = []
         
@@ -24,12 +29,14 @@ class bibfind():
 
     def parse_citation(self, passage):
         '''
-        Parses the user input 
+        Parses the user input in accessible format for bible citation
+
+        :return: a list of strings
 
         :example:
 
         >>> parse_citation("John 1:1")
-        :returns: [John, 1, 1]
+        >>> [John, 1, 1]
         '''
         if passage[0].isdigit():
             init = passage.split(' ', 2)
@@ -49,8 +56,11 @@ class bibfind():
         '''
         If a book is passed in incorrectly it will match to the most similar book 
 
+        :return: The most similar name of a book in the bible
+
         >>> smart_lookup("Gen")
-        :returns: "Genesis" 
+        >>> "Genesis"
+        
         '''
         bible_books = list(self.bible)
         for book in bible_books:
@@ -63,10 +73,10 @@ class bibfind():
 
         :param passage: Proper bible citation format 
         
-        :Example:
+        :example:
 
         >>> get_verse("John 1:1")
-        :returns: 
+        :prints: str
         John 1:1
         1 In the beginning was the Word, and the Word was with God, and the Word was God.
         
@@ -76,23 +86,23 @@ class bibfind():
         # EX Genesis 
         if len(parsed) == 1:
             for key in self.bible[bible_book]:
-                print(f"{parsed[0]} {parsed[1]}:{parsed[2]}")
+                print(f"{bible_book} {parsed[1]}:{parsed[2]}")
                 for j in self.bible[bible_book][key]:
                     print(f"{j} {self.bible[bible_book][key][j]}\n")
         # Genesis 1
         elif len(parsed) == 2: 
-            print(f"{parsed[0]} {parsed[1]}")
+            print(f"{parsed[0].capitalize()} {parsed[1]}")
             for key in self.bible[bible_book][parsed[1]]:
                 print(f"{key} {self.bible[bible_book][parsed[1]][key]}") 
 
         # Genesis 1:1
         elif len(parsed) == 3:  
-            print(f"{parsed[0]} {parsed[1]}:{parsed[2]}")
+            print(f"{bible_book} {parsed[1]}:{parsed[2]}")
             print(f"{parsed[2]} {self.bible[bible_book][parsed[1]][parsed[2]]}\n")
 
         # Gensis 1:1-2
         elif len(parsed) == 4:
-            print(f"{parsed[0]} {parsed[1]}:{parsed[2]}-{parsed[3]}")
+            print(f"{bible_book} {parsed[1]}:{parsed[2]}-{parsed[3]}")
             for key in self.bible[bible_book][parsed[1]]:
                 if int(key) >= int(parsed[2]) and int(key) <= int(parsed[3]):
                     print(f"{key} {self.bible[bible_book][parsed[1]][key]}")
@@ -148,7 +158,7 @@ class bibfind():
                             # Formatting 
                             self.format_verses(b, chapter, verse)
                             count += 1
-            print(f"Found {count} instance(s) of '{keyword}' in the {book}")          
+            print(f"Found {count} instance(s) of '{keyword}' in {book}")          
 
         else:                    
             for chapter in self.bible[bible_book]:  # Loops through each chapter in a bible book 
