@@ -15,7 +15,7 @@ class bibfind():
             
 
         self.list_books = list(self.bible)
-        self.line_proximity = 3  # will print so many lines before and after found keyword 
+        self.line_proximity = 3  # will print so many lines before and after found keyword verse-line  
         self.list_translations = '\n'.join(os.listdir(biblefolder))
         self.OldTestament = []
         self.NewTestament = []

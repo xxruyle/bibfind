@@ -1,6 +1,7 @@
 import bib_find
 import argparse
 import os 
+from pprint import pprint
 
 # The absolute path which contains the bible translations
 dirname = os.path.dirname(__file__)
@@ -10,6 +11,8 @@ def main():
     b1 = bib_find.bibfind(bibleTranslation)
     if args.list:
         print(b1.list_books)
+    elif args.abbrvs:
+        pprint(bib_find.bible_abrvs, sort_dicts=False)
     elif args.translations:
         print(b1.list_translations)
     elif args.search:
@@ -23,6 +26,7 @@ def main():
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Lookup a bible passage on the command line")
     parser.add_argument("-t", "--translations",  action='store_true', help = "List all the availible translations of the bible")
+    parser.add_argument("-a", "--abbrvs",  action='store_true', help = "List all the explicit abbreviations of each bible book (dictionary data structure)")
     parser.add_argument("-l", "--list",  action='store_true', help = "List all the books of the bible")
     parser.add_argument("-s", "--search", nargs = '*', metavar = "<book/all> <keyword>", type = str, help = "Returns verses (and the verses proximate to them) which contain the keyword argument. EX: -s ALL God, -s Matthew Jesus")
     parser.add_argument("-f", "--find", nargs = '*', metavar = "verse(s)", type = str, help = "<Book> <Chapter>:<Verse>-<Verse>")
