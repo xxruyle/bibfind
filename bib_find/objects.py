@@ -2,11 +2,11 @@ import json
 import re 
 import os
 import random
+from bib_find.abbrv import bible_abrvs
 
 # The absolute path which contains the bible translations
 dirname = os.path.dirname(__file__)
 biblefolder = os.path.join(dirname, "bibles")
-
 
 class bibfind():
     def __init__(self, translation):
@@ -54,18 +54,21 @@ class bibfind():
     #
     def smart_lookup(self, string):
         '''
-        If a book is passed in incorrectly it will match to the most similar book 
+        If a book is passed in incorrectly it will first try to match it to an abbrevation found in abbrv.py.
+        If no abbrevation is found it will match to the most similar book.
 
         :return: The most similar name of a book in the bible
 
         >>> smart_lookup("Gen")
-        >>> "Genesis"
-        
+        >>> "Genesis"  
         '''
         bible_books = list(self.bible)
-        for book in bible_books:
-            if string.upper() in book.upper(): 
-                return book  
+        for book in bible_books: 
+            for abbrev in bible_abrvs[book]:
+                if string.upper() == abbrev.upper():
+                    return book 
+            if string.upper() in book.upper():
+                return book 
 
     def get_verse(self, passage):
         '''

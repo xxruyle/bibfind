@@ -1,20 +1,4 @@
-import json 
-import re 
-with open("bib_find/bibles/EntireBible-DR.json", 'r', encoding="UTF-8") as f:
-    bible = json.load(f)
-
-
-#OldTestament = []
-#NewTestament = []
-#
-#matthewindex = mylist.index("Matthew")
-#for i, book in enumerate(mylist): 
-#    if book == "Matthew" or i >= matthewindex:
-#        NewTestament.append(book)
-#    else:
-#        OldTestament.append(book)
-
-bookdic = {
+bible_abrvs = {
     'Genesis': ['Gen', 'Ge', 'Gn'], 
     'Exodus': ['Ex', 'Exod', 'Exo'], 
     'Leviticus': ['Lev', 'Le', 'Lv'], 
@@ -89,18 +73,3 @@ bookdic = {
     'Jude': ['Jud', 'Jd'], 
     'Apocalypse': ['Revelation', 'Rev', 'Apoc']
 }
-
-
-def smart_lookup(string):
-    bible_books = list(bookdic)
-    for book in bible_books: 
-        for abbrev in bookdic[book]:
-            if string.upper() == abbrev.upper():
-                print('First Solution')
-                return book 
-        if string.upper() in book.upper():
-            print('Second Solution')
-            return book 
-    
-
-print(smart_lookup("Revelation"))
