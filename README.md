@@ -31,6 +31,8 @@ python main.py -f John 3:15
 15 That whosoever believeth in him, may not perish, but may have life everlasting.
 ```
 
+
+### Searching for a keyword 
 ``` 
 python main.py -s ALL Judas
 ...
@@ -40,7 +42,6 @@ Acts 15:32-36
 Found 161 instance(s) of 'Judas'
 ```
 
-### Searching for a keyword 
 
 ``` 
 python main.py -s NewTestament Judas
@@ -89,10 +90,10 @@ self.line_proximity = 3 # will print so many lines before and after found keywor
 
 
 # Changing the translation
-- You can choose a translation from the bibles folder and pass it in when intializing the class
+- You can choose a translation from the bibles folder by changing the `bibletranslation` variable in `main.py`
   - Example in `main.py`: 
 ``` python 
-b1 = bib_find.bibfind(r"bib_find\bibles\EntireBible-DR.json")
+bibleTranslation = os.path.join(rf"{dirname}\bib_find", "bibles\EntireBible-DR.json")
  ```
 
  ## Adding your Own Translation 

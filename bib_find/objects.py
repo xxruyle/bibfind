@@ -94,7 +94,7 @@ class bibfind():
                     print(f"{j} {self.bible[bible_book][key][j]}\n")
         # Genesis 1
         elif len(parsed) == 2: 
-            print(f"{parsed[0].capitalize()} {parsed[1]}")
+            print(f"{bible_book} {parsed[1]}")
             for key in self.bible[bible_book][parsed[1]]:
                 print(f"{key} {self.bible[bible_book][parsed[1]][key]}") 
 
