@@ -31,6 +31,13 @@ python main.py -f John 3:15
 15 That whosoever believeth in him, may not perish, but may have life everlasting.
 ```
 
+``` 
+python main.py -f 
+John 1:1-2
+1 In the beginning was the Word, and the Word was with God, and the Word was God.
+2 The same was in the beginning with God.
+```
+
 
 ### Searching for a keyword 
 ``` 
