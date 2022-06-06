@@ -56,6 +56,12 @@ python main.py -s NewTestament Judas
 Found 128 instance(s) of 'Judas' in the NT
 ```
 
+```
+python main.py -s OT 
+...
+Found 17 instance(s) of 'JEsus' in OT
+```
+
 
 ``` 
 python main.py -s "3 John" Church 
