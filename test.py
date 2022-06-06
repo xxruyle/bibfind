@@ -103,4 +103,3 @@ def smart_lookup(string):
             return book 
     
 
-print(smart_lookup("Revelation"))

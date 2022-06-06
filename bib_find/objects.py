@@ -27,6 +27,21 @@ class bibfind():
             else:
                 self.OldTestament.append(book)
 
+        self.create_abrvs(bible_abrvs)
+        
+
+    def create_abrvs(self, abrv_dict):
+        '''
+        Creates a correct abbreviation dictionary according to the dictionary
+        '''
+        bible_books = self.list_books         
+        for book in bible_books: 
+            for abrv_key in list(bible_abrvs):
+                for abrv_element in abrv_dict[abrv_key]:
+                    if book == abrv_element:
+                        abrv_dict[book] = abrv_dict.pop(abrv_key)
+    
+
     def parse_citation(self, passage):
         '''
         Parses the user input in accessible format for bible citation
@@ -64,9 +79,10 @@ class bibfind():
         '''
         bible_books = list(self.bible)
         for book in bible_books: 
-            for abbrev in bible_abrvs[book]:
-                if string.upper() == abbrev.upper():
-                    return book 
+            if book in bible_abrvs:
+                for abbrev in bible_abrvs[book]:
+                    if string.upper() == abbrev.upper():
+                        return book 
             if string.upper() in book.upper():
                 return book 
 
