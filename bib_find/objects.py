@@ -48,7 +48,7 @@ class bibfind():
         '''
         bible_book = self.smart_lookup(book)
         for chapter in self.bible[bible_book]:
-            print(f"{chapter}: {self.bible[bible_book][chapter][0]}")
+            print(f"{chapter}: {self.bible[bible_book][chapter]['1']}")
 
     def parse_citation(self, passage):
         '''
