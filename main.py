@@ -15,6 +15,8 @@ def main():
         pprint(bib_find.bible_abrvs, sort_dicts=False)
     elif args.translations:
         print(b1.list_translations)
+    elif args.chapter:
+        b1.list_chapters(args.chapter)
     elif args.search:
         b1.search_key(args.search[0], args.search[1])
     elif args.random:
@@ -28,6 +30,7 @@ if __name__ == "__main__":
     parser.add_argument("-t", "--translations",  action='store_true', help = "List all the availible translations of the bible")
     parser.add_argument("-a", "--abbrvs",  action='store_true', help = "List all the explicit abbreviations of each bible book as a dictionary")
     parser.add_argument("-l", "--list",  action='store_true', help = "List all the books of the bible")
+    parser.add_argument("-c", "--chapter", metavar = "book", type = str, help = "List the chapters of a bible book")
     parser.add_argument("-s", "--search", nargs = '*', metavar = "<book/all> <keyword>", type = str, help = "Returns verses (and the verses proximate to them) which contain the keyword argument. EX: -s ALL God, -s Matthew Jesus")
     parser.add_argument("-f", "--find", nargs = '*', metavar = "verse(s)", type = str, help = "<Book> <Chapter>:<Verse>-<Verse>")
     parser.add_argument("-r", "--random", metavar = "book", type = str, help = "Look up a random passage from the bible. EX: -r ALL, -r OT, -r NT, -r Matthew")
