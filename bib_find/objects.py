@@ -44,10 +44,11 @@ class bibfind():
 
     def list_chapters(self, book):
         '''
-        Lists the chapters of a bible book 
+        Lists the chapters of a bible book and its first verse 
         '''
-        for chapter in self.bible[book]:
-            print(chapter + "\n")
+        bible_book = self.smart_lookup(book)
+        for chapter in self.bible[bible_book]:
+            print(f"{chapter}: {self.bible[bible_book][chapter][0]}")
 
     def parse_citation(self, passage):
         '''
