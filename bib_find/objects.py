@@ -42,6 +42,13 @@ class bibfind():
                         abrv_dict[book] = abrv_dict.pop(abrv_key)
     
 
+    def list_chapters(self, book):
+        '''
+        Lists the chapters of a bible book 
+        '''
+        for chapter in self.bible[book]:
+            print(chapter + "\n")
+
     def parse_citation(self, passage):
         '''
         Parses the user input in accessible format for bible citation
