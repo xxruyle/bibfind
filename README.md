@@ -115,11 +115,11 @@ bibleTranslation = os.path.join(rf"{dirname}\bib_find", "bibles\EntireBible-DR.j
 Example of the format 
 ``` json
 {
- "Genesis": // Book Name
+ "Genesis": 
   {
-   "1": // Chapter Number
+   "1": 
      {
-      "1": "In the *beginning God created heaven and earth.", // verses 
+      "1": "In the *beginning God created heaven and earth.", 
       "2": "*And the earth was void and empty, and darkness was upon the face of the deep: and   the   Spirit of God moved over the waters.",
       "3": "And God said: *Be light made. And light was made.",
      }
