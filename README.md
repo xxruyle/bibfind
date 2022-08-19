@@ -65,7 +65,7 @@ Found 17 instance(s) of 'JEsus' in OT
 
 
 ``` 
-python main.py -s "3 John" Church 
+python main.py -s "3 John" Church 1
 
 3 John 1:8-12
 ...
