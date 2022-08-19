@@ -15,7 +15,6 @@ class bibfind():
             
 
         self.list_books = list(self.bible)
-        self.line_proximity = 3  # will print so many lines before and after found keyword verse-line  
         self.list_translations = '\n'.join(os.listdir(biblefolder))
         self.OldTestament = []
         self.NewTestament = []
@@ -137,7 +136,7 @@ class bibfind():
         else:
             print("String not proper citation format")
 
-    def format_verses(self, bib_book, chapter, verse): 
+    def format_verses(self, bib_book, chapter, verse, line_proximity): 
         '''
         used in search_key to print out the found verses pretty.
 
@@ -145,12 +144,14 @@ class bibfind():
         :param chapter: the chapter
         :param verse: the verse 
         '''
+        
+
         int_verse = int(verse)
-        if str(int_verse - self.line_proximity) in self.bible[bib_book][chapter] and str(int_verse + self.line_proximity) in self.bible[bib_book][chapter]:
-            print(f"{bib_book} {chapter}:{str(int_verse - self.line_proximity + 1)}-{str(int_verse + self.line_proximity - 1)}")
-            for j in reversed(range(0, self.line_proximity)):
+        if str(int_verse - line_proximity) in self.bible[bib_book][chapter] and str(int_verse + line_proximity) in self.bible[bib_book][chapter]:
+            print(f"{bib_book} {chapter}:{str(int_verse - line_proximity + 1)}-{str(int_verse + line_proximity - 1)}")
+            for j in reversed(range(0, line_proximity)):
                 print(f"{str(int_verse - j)} {self.bible[bib_book][chapter][str(int_verse - j)]}")
-            for i in range(1, self.line_proximity):
+            for i in range(1, line_proximity):
                 print(f"{str(int_verse + i)} {self.bible[bib_book][chapter][str(int_verse + i)]}")
             print("\n")
         else:
@@ -158,7 +159,7 @@ class bibfind():
             print(f"{verse} {self.bible[bib_book][chapter][verse]}\n")
 
  
-    def search_key(self, book, keyword):
+    def search_key(self, book, keyword, line_proximity):
         '''
         Returns verses (and the verses proximate to them) which contain the keyword argument
         :param book: Takes either a single 'book' or 'all' or 'NT' or 'OT' in the bible
@@ -169,6 +170,10 @@ class bibfind():
         >>> search_key("ALL", "Jesus")
         :returns: found 938 instance(s) of 'Jesus'
         '''
+        if not line_proximity.isdigit(): 
+            raise Exception("Line Proximity argument is not of int type")
+
+        line_proximity = int(line_proximity)
         bible_book = self.smart_lookup(book)
         count = 0
         if book.upper() == "ALL" or book.upper() == "OT" or book.upper() == "NT":
@@ -183,7 +188,7 @@ class bibfind():
                     for verse in self.bible[b][chapter]:
                         if keyword.upper() in self.bible[b][chapter][verse].upper():
                             # Formatting 
-                            self.format_verses(b, chapter, verse)
+                            self.format_verses(b, chapter, verse, line_proximity)
                             count += 1
             print(f"Found {count} instance(s) of '{keyword}' in {book}")          
 

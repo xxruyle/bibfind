@@ -4,19 +4,20 @@
 
 # Usage 
 ```  
-usage: main.py [-h] [-t] [-a] [-l] [-s [<book/all> <keyword> ...]] [-f [verses ...]] [-r book]
+usage: main.py [-h] [-t] [-a] [-l] [-c book] [-s [<book/all> <keyword> <line_proximity> ...]] [-f [verses ...]] [-r book]
 
 Lookup a bible passage on the command line
 
 options:
   -h, --help            show this help message and exit
   -t, --translations    List all the availible translations of the bible
-  -a, --abbrvs          List all the explicit abbreviations of each bible book (dictionary data
-                        structure)
+  -a, --abbrvs          List all the explicit abbreviations of each bible book as a dictionary
   -l, --list            List all the books of the bible
-  -s [<book/all> <keyword> ...], --search [<book/all> <keyword> ...]
-                        Returns verses (and the verses proximate to them) which contain the keyword
-                        argument. EX: -s ALL God, -s Matthew Jesus
+  -c book, --chapter book
+                        Lists the chapters of a bible book and its first verse
+  -s [<book/all> <keyword> <line_proximity> ...], --search [<book/all> <keyword> <line_proximity> ...]
+                        Returns verses (and the verses proximate to them) which contain the keyword argument. EX: -s ALL God 2, -s Matthew Jesus  
+                        1
   -f [verse(s) ...], --find [verse(s) ...]
                         <Book> <Chapter>:<Verse>-<Verse>
   -r book, --random book
