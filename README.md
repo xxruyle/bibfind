@@ -42,7 +42,7 @@ John 1:1-2
 
 ### Searching for a keyword 
 ``` 
-python main.py -s ALL Judas
+python main.py -s ALL Judas 1 
 ...
 Acts 15:32-36
 34 But it seemed good to Silas to remain there: and Judas alone set out for Jerusalem.
@@ -52,13 +52,13 @@ Found 161 instance(s) of 'Judas'
 
 
 ``` 
-python main.py -s NewTestament Judas
+python main.py -s NewTestament Judas 3 
 ...
 Found 128 instance(s) of 'Judas' in the NT
 ```
 
 ```
-python main.py -s OT 
+python main.py -s OT 2
 ...
 Found 17 instance(s) of 'JEsus' in OT
 ```
